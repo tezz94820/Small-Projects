@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+    }  
+        .middle{
+            height: 200px;
+            width: 200px;
+            background-color: aqua;
+            position: relative;
+            animation: rotate 5s linear infinite forwards;
+            display: none;
+            cursor: pointer;
+        }
+
+        @keyframes rotate {
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+
+        .spheres{
+            display: none;
+        }
+        #inner1{
+            height: 50px;
+            width: 50px;
+            background-color: blue;
+            border-radius: 50%;
+            animation: move1 2s  linear infinite forwards ;
+        }
+        @keyframes move1 {
+            0%,100%{
+                margin-left: 0%;
+                margin-top: 0%;
+            }
+            25%{
+                margin-top: 0%;
+                margin-left: 75%;
+            }
+            50%{
+                margin-top: 75%;
+                margin-left: 75%;
+            }
+            75%{
+                margin-top: 0%;
+                margin-left: 75%;
+            }
+
+        }
+
+        #inner2{
+            height: 50px;
+            width: 50px;
+            background-color: blue;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: move2 2s linear infinite forwards;
+        }
+        @keyframes move2 {
+            0%,100%{
+                margin-left: 0%;
+                margin-top: 0%;
+            }
+            25%{
+                margin-top: 75%;
+                margin-left: 0%;
+            }
+            50%{
+                margin-top: 75%;
+                margin-left: 75%;
+            }
+            75%{
+                margin-top: 75%;
+                margin-left: 0%;
+            }
+
+        }
+
+        #inner3{
+            height: 50px;
+            width: 50px;
+            background-color: blue;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: move3 2s linear infinite forwards;
+        }
+        @keyframes move3 {
+            0%,100%{
+                margin-left: 0%;
+                margin-top: 0%;
+            }
+            50%{
+                margin-top: 75%;
+                margin-left: 75%;
+            }
+        }
+
+        #line{
+            background-color: black;
+            height: 50vh;
+            width: 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-left: 50%;
+            display: none;
+            /* transition: all 2s; */
+        }
+        #textBox{
+            height: 50px;
+            width: 50px;
+            background-color: aqua;
+            position: absolute;
+            color: black;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            font-weight: bold;
+            top: 37.5%;
+            left: 37.5%;
+            animation: rotateReverse 5s linear infinite forwards;
+            cursor: pointer;
+        }
+        @keyframes rotateReverse {
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(-360deg);
+            }
+        }
+        #bodyPara{
+            text-transform: uppercase;
+            font-size: larger;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="line"></div>
+    <div class="middle">
+        <div id="inner1" class="spheres"></div>
+        <div id="inner2" class="spheres"></div>
+        <div id="inner3" class="spheres"></div>
+        <div id="textBox">Touch</div>
+    </div>
+    <p id="bodyPara">Touch the screen to have Disco</p>
+
+    <script>
+        const spheres = document.querySelectorAll('.spheres')
+        const box = document.querySelector('.middle')
+        const line = document.querySelector('#line')
+        const bodyPara = document.querySelector('#bodyPara')
+        const textBox = document.querySelector('#textBox')
+        
+        //random Number Generator
+        const random = () => Math.floor(Math.random()*256)
+        
+        document.body.addEventListener('click', () => {
+            line.style.display = 'block'
+            box.style.display = 'block'
+            bodyPara.style.display = 'none'
+        })
+
+        box.addEventListener('click',()=>{
+            spheres.forEach( sphere => {
+                    sphere.style.display = 'block'
+                });
+            disco()
+                textBox.style.display = 'none'
+        })
+
+        
+        const disco = () => {
+            setInterval( () =>{
+                //variables
+                const sphereColor = `rgb(${random()},${random()},${random()})`
+                const boxColor =`rgb(${random()},${random()},${random()})`
+                const bodyColor =`rgb(${random()},${random()},${random()})`
+                
+                //sphere Color changing
+                spheres.forEach( sphere => {
+                    sphere.style.backgroundColor = sphereColor
+                });
+
+                //box color changing
+                box.style.backgroundColor = boxColor
+
+                //body color  changing
+                document.body.style.backgroundColor = bodyColor
+            } , 1000 )
+        }
+    </script>
+</body>
+</html>

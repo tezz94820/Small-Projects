@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.8s;
+        }
+
+        label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 35px;
+            width: 75px;
+            padding: 0 6px;
+            background: #222;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        label i {
+            font-size: 18px;
+        }
+
+        label .fa-sun {
+            color: gold;
+            transition: 0.8s;
+            opacity: 0;
+        }
+
+        label .fa-moon {
+            color: #fff;
+            transition: 0.8s;
+            opacity: 1;
+        }
+
+        
+
+        input:checked + label .fa-sun{
+            opacity: 1;
+        }
+        input:checked + label .fa-moon{
+            opacity: 0;
+        }
+
+        label .ball{
+            position: absolute;
+            display: block;
+            width: 25px;
+            height: 25px;
+            top: 5px;
+            left: 5px;
+            background: #fff;
+            border-radius: 50%;
+            transition: 0.8s;
+        }
+        
+        input:checked + label .ball{
+            transform: translateX(40px);
+        }
+
+        input{display: none;}
+        p{font-size: 20px;}
+    
+    </style>
+</head>
+
+<body>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, ullam.</p>
+    <div class="switch-container">
+        <input type="checkbox" id="switch">
+        <label for="switch">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+            <span class="ball"></span>
+        </label>
+    </div>
+
+    <script>
+        let checkbox = document.querySelector('input');
+        checkbox.addEventListener('change',function(){
+            if(this.checked)
+            {
+                document.body.style.color = "white";
+                document.body.style.backgroundColor = "black";
+            }
+            else{
+                document.body.style.color = "black";
+                document.body.style.backgroundColor = "white";
+            }
+            
+        })
+    </script>
+</body>
+
+</html>

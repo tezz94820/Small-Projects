@@ -1,0 +1,109 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: red;
+}
+
+header {
+    background-color: black;
+    color: white;
+    padding: 20px;
+}
+
+header>h1 {
+    text-align: center;
+}
+
+.scoreBoard {
+    width: 200px;
+    margin: 12px auto;
+    border: 3px solid black;
+    border-radius: 4px;
+    background-color: white;
+    position: relative;
+    height: 48px;
+    text-align: center;
+    font-size: 28px;
+    padding-top: 26px;
+    margin-bottom: 0%;
+}
+
+.indicationBox {
+    position: absolute;
+    background-color: rgb(212, 83, 9);
+    border: 2px solid rgb(173, 21, 21);
+    border-radius: 1px;
+    height: 9px;
+    width: 43px;
+    text-align: center;
+    font-size: 10px;
+    padding: 4px;
+}
+
+#userBox {
+    top: 27px;
+    left: -27px;
+}
+
+#computerBox {
+    top: 27px;
+    right: -31px;
+}
+
+.score {
+    font-size: 28px;
+}
+
+.decision {
+    background-color: aqua;
+}
+
+.decision>p {
+    text-align: center;
+    font-size: 18px;
+}
+
+.userSelection {
+    text-align: center;
+    background-color: red;
+    margin: 10px auto;
+}
+
+.selectionButton {
+    border: 2px solid black;
+    margin: 5px 7px;
+    font-weight: bold;
+    transition: all .3s;
+    border-radius: 50%;
+    height: 60px;
+    width: 100px;
+    font-size: 45px;
+}
+
+.selectionButton:hover {
+    background-color: rgb(19, 230, 230);
+    border: 5px solid rgb(54, 18, 212);
+}
+
+.graphicBox {
+    bottom: 50px;
+    position: relative;
+    text-align: center;
+    font-size: 45px;
+    visibility: hidden;
+}
+
+#userIcon {
+    position: relative;
+    bottom: 12px;
+    right: 145px;
+}
+
+#computerIcon {
+    position: relative;
+    bottom: 12px;
+    left: 145px;
+}

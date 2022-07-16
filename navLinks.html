@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #252839;
+        }
+        ul{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            list-style: none;
+
+        }
+        ul li a{
+            position: relative;
+            font-size: 4em;
+            text-decoration: none;
+            line-height: 1em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+        }
+
+        ul li a::before{
+            content: attr(data-text);
+            position: absolute;
+            color: aqua;
+            width: 0%;
+            overflow: hidden;
+            transition: 1s;
+            border-right: 8px solid aqua;
+        }
+        
+        ul li a:hover::before{
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="#" data-text="Home">Home</a>
+        </li>
+        <li>
+            <a href="#" data-text="About">About</a>
+        </li>
+        <li>
+            <a href="#" data-text="Services">Services</a>
+        </li>
+        <li>
+            <a href="#" data-text="Teams">Teams</a>
+        </li>
+        <li>
+            <a href="#" data-text="Contact">Contact</a>
+        </li>
+    </ul>
+</body>
+</html>

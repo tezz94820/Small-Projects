@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock paper scissor game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            height: 100vh;
+            width: 100vw;
+            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        header {
+            background-color: black;
+            color: white;
+            padding: 20px;
+        }
+        
+        header>h1 {
+            text-align: center;
+        }
+        
+        .scoreBoard {
+            width: 200px;
+            margin: 12px auto;
+            border: 3px solid black;
+            border-radius: 4px;
+            background-color: white;
+            position: relative;
+            height: 48px;
+            text-align: center;
+            font-size: 28px;
+            padding-top: 26px;
+            margin-bottom: 0%;
+        }
+        
+        .indicationBox {
+            position: absolute;
+            background-color: rgb(212, 83, 9);
+            border: 2px solid rgb(173, 21, 21);
+            border-radius: 1px;
+            height: 9px;
+            width: 43px;
+            text-align: center;
+            font-size: 10px;
+            padding: 4px;
+        }
+        
+        #userBox {
+            top: 27px;
+            left: -27px;
+        }
+        
+        #computerBox {
+            top: 27px;
+            right: -31px;
+        }
+        
+        .score {
+            font-size: 28px;
+        }
+        
+        .decision {
+            background-color: aqua;
+        }
+        
+        .decision>p {
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        .userSelection {
+            text-align: center;
+            background-color: red;
+            margin: 10px auto;
+        }
+        
+        .selectionButton {
+            border: 2px solid black;
+            margin: 5px 7px;
+            font-weight: bold;
+            transition: all .3s;
+            border-radius: 50%;
+            height: 60px;
+            width: 100px;
+            font-size: 45px;
+        }
+        
+        .selectionButton:hover {
+            background-color: rgb(19, 230, 230);
+            border: 5px solid rgb(54, 18, 212);
+        }
+        
+        .graphicBox {
+            bottom: 50px;
+            position: relative;
+            text-align: center;
+            font-size: 45px;
+            visibility: hidden;
+        }
+        
+        #userIcon {
+            position: relative;
+            bottom: 12px;
+            right: 145px;
+        }
+        
+        #computerIcon {
+            position: relative;
+            bottom: 12px;
+            left: 145px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <header>
+            <h1>Rock Paper and Scissor</h1>
+        </header>
+
+        <div class="scoreBoard">
+            <div class="indicationBox" id="userBox">user</div>
+            <div class="scoreNumber">
+                <span class="score" id="userScore">0</span>:<span class="score" id="computerScore">0</span>
+            </div>
+            <div class="indicationBox" id="computerBox">computer</div>
+        </div>
+
+        <div class="graphicBox">
+            <i class="fas fa-hand-rock" id="userIcon"></i>
+            <i class="fas fa-hand-paper" id="computerIcon"></i>
+        </div>
+
+        <div class="decision">
+            <p>select your choice</p>
+        </div>
+
+        <div class="userSelection">
+            <button id="r" class="selectionButton"><i class="fas fa-hand-rock"></i></button>
+            <button id="p" class="selectionButton"><i class="fas fa-hand-paper"></i></button>
+            <button id="s" class="selectionButton"><i class="fas fa-hand-scissors"></i></button>
+        </div>
+    </div>
+
+    <script>
+        let userScore = 0;
+        let computerScore = 0;
+        const button_r = document.querySelector('#r');
+        const button_p = document.querySelector('#p');
+        const button_s = document.querySelector('#s');
+        const userScore_span = document.querySelector('#userScore');
+        const computerScore_span = document.querySelector('#computerScore');
+        const decision_div = document.querySelector('.decision >p');
+        const scoreBoard_div = document.querySelector('.scoreBoard');
+        const graphicBox = document.querySelector('.graphicBox');
+        const userIcon = document.querySelector('#userIcon');
+        const computerIcon = document.querySelector('#computerIcon');
+
+
+
+        //random number creator and assigning it to r , p ,s 
+        function computerChoice() {
+            const choices = ['r', 'p', 's'];
+            let random = Math.floor(Math.random() * 3);
+            return choices[random];
+        }
+
+        function nameChanger(name) {
+            switch (name) {
+                case 'r':
+                    return "Rock";
+                    break;
+                case 's':
+                    return "Scissor";
+                    break;
+                case 'p':
+                    return "Paper";
+                    break;
+            }
+        }
+
+        function iconChanger(userChoice, computerChoiceConst) {
+            const array = ['fas fa-hand-rock', 'fas fa-hand-paper', 'fas fa-hand-scissors'];
+            let userClass;
+            let computerClass;
+
+            switch (userChoice) {
+                case 'r':
+                    userClass = array[0];
+                    break;
+                case 'p':
+                    userClass = array[1];
+                    break;
+                case 's':
+                    userClass = array[2];
+                    break;
+            }
+            switch (computerChoiceConst) {
+                case 'r':
+                    computerClass = array[0];
+                    break;
+                case 'p':
+                    computerClass = array[1];
+                    break;
+                case 's':
+                    computerClass = array[2];
+                    break;
+            }
+            userIcon.className = userClass;
+            computerIcon.className = computerClass;
+
+        }
+
+        function win(userChoice, computerChoiceConst) {
+            userScore++;
+            console.log("winner");
+            userScore_span.innerHTML = userScore;
+            decision_div.innerHTML = `you choosed ${nameChanger(userChoice)} and computer choosed ${nameChanger(computerChoiceConst)} <br></br>    you win !`;
+            scoreBoard_div.style.backgroundColor = "green";
+        }
+
+        function lose(userChoice, computerChoiceConst) {
+            computerScore++;
+            console.log("looser");
+            computerScore_span.innerHTML = computerScore;
+            decision_div.innerHTML = `you choosed ${nameChanger(userChoice)} and computer choosed ${nameChanger(computerChoiceConst)} <br></br>   you Lose !`;
+            scoreBoard_div.style.backgroundColor = "rgb(179, 47, 47)";
+
+        }
+
+        function draw(userChoice, computerChoiceConst) {
+            console.log("draw");
+            decision_div.innerHTML = `you choosed ${nameChanger(userChoice)} and computer choosed ${nameChanger(computerChoiceConst)} <br></br>   DRAW ! `;
+            scoreBoard_div.style.backgroundColor = "white";
+
+        }
+
+
+
+        function game(userChoice) {
+            const computerChoiceConst = computerChoice();
+            console.log(`you selected ${userChoice}`);
+            console.log(`computer selected ${computerChoiceConst}`);
+
+            if (userChoice == 'r')
+                switch (computerChoiceConst) {
+                    case 's':
+                        win(userChoice, computerChoiceConst);
+                        break;
+                    case 'r':
+                        computerChoiceConst
+                        draw(userChoice, computerChoiceConst);
+                        break;
+                    case 'p':
+                        lose(userChoice, computerChoiceConst);
+                        break;
+                }
+
+            else if (userChoice == 'p')
+                switch (computerChoiceConst) {
+                    case 'r':
+                        win(userChoice, computerChoiceConst);
+                        break;
+                    case 'p':
+                        draw(userChoice, computerChoiceConst);
+                        break;
+                    case 's':
+                        lose(userChoice, computerChoiceConst);
+                        break;
+                }
+
+            else if (userChoice == 's')
+                switch (computerChoiceConst) {
+                    case 'p':
+                        win(userChoice, computerChoiceConst);
+                        break;
+                    case 's':
+                        draw(userChoice, computerChoiceConst);
+                        break;
+                    case 'r':
+                        lose(userChoice, computerChoiceConst);
+                        break;
+                }
+            iconChanger(userChoice, computerChoiceConst);
+        }
+
+
+
+
+        function main() {
+
+            button_r.addEventListener('click', function() {
+                game('r');
+                graphicBox.style.visibility = "visible";
+            })
+
+            button_p.addEventListener('click', function() {
+                game('p')
+                graphicBox.style.visibility = "visible";
+
+            })
+
+            button_s.addEventListener('click', function() {
+                game('s');
+                graphicBox.style.visibility = "visible";
+
+            })
+        }
+
+        main();
+    </script>
+</body>
+
+</html>

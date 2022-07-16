@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        .container::before{
+            position: absolute; /*important*/
+            height: 480px;
+            width: 853px;
+            content: " ";
+            background-image: url('https://source.unsplash.com/random');
+            background-repeat: no-repeat;
+            background-position: center center;
+            z-index: -1;
+        }
+        .container{
+            height: 480px;
+            width: 853px;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-columns: repeat(3,1fr);
+        }
+
+        .items{
+            border: 1px solid black;
+            display: none;
+        }
+        #item1{
+            backdrop-filter: blur(5px);
+        }
+        #item2{
+            backdrop-filter: brightness(200%);
+        }
+        #item3{
+            backdrop-filter: hue-rotate(90deg);
+        }
+        #item4{
+            backdrop-filter:contrast(120%) ;
+        }
+        #item5{
+            backdrop-filter: grayscale(50%);
+        }
+        #item6{
+            backdrop-filter: blur(5px);
+        }
+        #item7{
+            backdrop-filter: brightness(200%);
+        }
+        #item8{
+            backdrop-filter: hue-rotate(90deg);
+            filter:grayscale()
+        }
+        #item9{
+            backdrop-filter:contrast(120%) ;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="items" id="item1"></div>
+        <div class="items" id="item2"></div>
+        <div class="items" id="item3"></div>
+        <div class="items" id="item4"></div>
+        <div class="items" id="item5"></div>
+        <div class="items" id="item6"></div>
+        <div class="items" id="item7"></div>
+        <div class="items" id="item8"></div>
+        <div class="items" id="item9"></div>
+    </div>
+    <script>
+        const container = document.querySelector('.container')
+        const items = document.querySelectorAll('.items')
+        const item9 = document.querySelector('#item9')
+
+        const itemsDisplay = display => items.forEach( item => item.style.display = display)
+    
+        container.addEventListener('click', () => {
+            if( item9.style.display == 'none')
+                itemsDisplay('block')
+            else
+                itemsDisplay('none')
+        })
+
+                                            //continusly after 500ms
+        // setInterval( () => {
+        //     if( item9.style.display == 'none')
+        //         itemsDisplay('block')
+        //     else
+        //         itemsDisplay('none')
+        // } ,500)
+        
+    </script>
+</body>
+</html>

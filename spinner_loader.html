@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .ballfirst {
+            height: 50px;
+            width: 50px;
+            background-color: white;
+            border: 5px dashed black;
+            border-radius: 50%;
+            animation: rotatefirst 2s ease-in-out infinite;
+
+        }
+
+        #ball1 {
+            border-bottom: 5px solid white;
+        }
+
+        #ball2 {
+            border-top: 5px dashed white;
+        }
+
+        @keyframes rotatefirst {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .container1 {
+            animation: rotatecontainer 2s ease-in-out infinite;
+            background-color: transparent;
+        }
+
+        @keyframes rotatecontainer {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .ballsecond {
+            height: 50px;
+            width: 50px;
+            background-color: white;
+            border: 5px dashed black;
+            border-radius: 50%;
+            animation: rotatesecond 2s ease-in-out infinite;
+
+        }
+
+        #ball3 {
+            border-bottom: 5px solid white;
+        }
+
+        #ball4 {
+            border-top: 5px dashed white;
+        }
+
+        @keyframes rotatesecond {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .container2 {
+            transform: translateX(-58px) rotate(90deg);
+            animation: rotatecontainer2 2s ease-in-out infinite;
+            background-color: transparent;
+        }
+
+        @keyframes rotatecontainer2 {
+            from {
+                transform: translateX(-58px) rotate(90deg);
+            }
+
+            to {
+                transform: translateX(-58px) rotate(270deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container1">
+        <div id="ball1" class="ballfirst"></div><br><br>
+        <div class="ballfirst" id="ball2"></div>
+    </div>
+    
+    <div class="container2">
+        <div id="ball3" class="ballsecond"></div><br><br>
+        <div class="ballsecond" id="ball4"></div>
+    </div>
+    
+    <script>
+
+    </script>
+</body>
+
+</html>
